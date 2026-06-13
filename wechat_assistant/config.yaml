@@ -1,0 +1,64 @@
+# ============================================================
+# 微信朋友圈自动点赞 · 配置文件
+# 所有"拟人化"与"安全频控"参数都集中在这里，方便调试
+# ============================================================
+
+wechat:
+  # PC 微信可执行文件路径（用于自动启动微信；若微信已打开则无需精确）
+  exe_path: "C:\\Program Files\\Tencent\\WeChat\\WeChat.exe"
+  # 主窗口标题（中文版通常是「微信」，英文版是「WeChat」）
+  main_window_title: "微信"
+  # 朋友圈窗口标题
+  moments_window_title: "朋友圈"
+  # 启动后等待微信就绪的最长秒数
+  launch_timeout: 30
+
+human:
+  # —— 点赞率：每条内容点赞的概率（0~1）。真人不会条条都赞 ——
+  like_probability: 0.7
+
+  # —— 条目之间的停顿（秒），模拟"阅读"时间，取区间内随机值 ——
+  read_delay_min: 1.5
+  read_delay_max: 6.0
+
+  # —— 点击前的犹豫停顿（秒） ——
+  click_hesitation_min: 0.3
+  click_hesitation_max: 1.2
+
+  # —— 鼠标移动：贝塞尔曲线步数与每步耗时区间，越大越"慢而自然" ——
+  mouse_move_steps_min: 25
+  mouse_move_steps_max: 60
+  mouse_step_delay_min: 0.004
+  mouse_step_delay_max: 0.012
+
+  # —— 点击坐标在按钮热区内的随机抖动半径（像素） ——
+  click_jitter_px: 4
+
+  # —— 滚动：每次滚动的"滴答"数与滚动后停顿 ——
+  scroll_ticks_min: 2
+  scroll_ticks_max: 5
+  scroll_pause_min: 0.8
+  scroll_pause_max: 2.5
+
+safety:
+  # —— 单次运行最多处理多少条朋友圈 ——
+  max_posts_per_run: 50
+  # —— 单次运行最多点赞多少次 ——
+  max_likes_per_run: 30
+  # —— 每点赞 N 次后强制"休息" ——
+  rest_after_likes: 10
+  rest_seconds_min: 30
+  rest_seconds_max: 90
+  # —— 活跃时段限制（24h）；不在区间内则拒绝运行。设为 null 关闭限制 ——
+  active_hours_start: 8
+  active_hours_end: 23
+  # —— 连续多少次操作失败后熔断停止 ——
+  max_consecutive_failures: 5
+
+runtime:
+  # dry_run = true 时只模拟、打印日志，不真正点击（强烈建议先开着调试）
+  dry_run: true
+  # 日志级别：DEBUG / INFO / WARNING / ERROR
+  log_level: "INFO"
+  # 点赞按钮模板图片目录（图像兜底识别用）
+  templates_dir: "templates"

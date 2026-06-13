@@ -1,0 +1,10 @@
+# 运行平台：Windows（PC 微信）
+# Python 3.9+
+
+uiautomation>=2.0.18    # Windows UI Automation，定位微信窗口与控件
+pyautogui>=0.9.54       # 模拟鼠标/键盘
+pywin32>=306            # 窗口操作、进程查找
+opencv-python>=4.8.0    # 图像模板匹配（点赞按钮兜底识别）
+numpy>=1.24.0
+PyYAML>=6.0             # 读取配置
+Pillow>=10.0.0          # 截图
